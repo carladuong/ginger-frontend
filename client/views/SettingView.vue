@@ -3,7 +3,7 @@ import router from "@/router";
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
 import UpdateUserForm from "../components/Setting/UpdateUserForm.vue";
-import OptInOut from "../components/Setting/OptInOut.Vue";
+import OptInOut from "../components/Setting/OptInOut.vue";
 
 const { currentUsername } = storeToRefs(useUserStore());
 const { logoutUser, deleteUser } = useUserStore();
