@@ -27,6 +27,12 @@ class Routes {
     return await Authing.getUsers();
   }
 
+  @Router.get("/users/id/:id")
+  async getUserById(id: string) {
+    const idObj = new ObjectId(id);
+    return await Authing.getUserById(idObj);
+  }
+
   @Router.get("/users/:username")
   @Router.validate(z.object({ username: z.string().min(1) }))
   async getUser(username: string) {
@@ -259,9 +265,13 @@ class Routes {
 
   @Router.get("/chats/:chatter")
   async getChatMessages(session: SessionDoc, chatter: string) {
+    console.log("RUNNING GETCHATMESSAGES");
     const user = Sessioning.getUser(session);
+    console.log(`Getting this user in getChatMessages: ${chatter}`);
     const chatterId = (await Authing.getUserByUsername(chatter))._id;
     return await Messaging.getChatMessages(user, chatterId);
+    // const chatterId = new ObjectId(chatter);
+    // return await Messaging.getChatMessages(user, chatterId);
   }
 
   @Router.post("/chats/start")

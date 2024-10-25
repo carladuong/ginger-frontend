@@ -19,7 +19,7 @@ const toggleOpt = async () => {
     optedIn.value = true;
     buttonText.value = "Opt out";
     buttonColor.value = "red";
-    message.value = "You are currently opted into matching.";
+    message.value = "You are currently opted into matching. You may receive messages from people in your communities looking for a buddy!";
   }
 };
 </script>

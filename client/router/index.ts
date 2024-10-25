@@ -2,10 +2,12 @@ import { storeToRefs } from "pinia";
 import { createRouter, createWebHistory } from "vue-router";
 
 import { useUserStore } from "@/stores/user";
+import ChatView from "../views/ChatView.vue";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
 import SettingView from "../views/SettingView.vue";
+import SingleChatView from "../views/SingleChatView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +34,18 @@ const router = createRouter({
           return { name: "Settings" };
         }
       },
+    },
+    {
+      path: "/chats",
+      name: "Chats",
+      component: ChatView,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: "/messages/:chatter",
+      name: "Messages",
+      component: SingleChatView,
+      meta: { requiresAuth: false },
     },
     {
       path: "/:catchAll(.*)",

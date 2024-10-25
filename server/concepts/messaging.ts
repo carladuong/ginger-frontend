@@ -37,9 +37,10 @@ export default class MessagingConcept {
       ],
     });
     if (existing) {
+      console.log(existing);
       throw new NotAllowedError("Chat already exists!");
     }
-    this.chats.createOne({ chatter1, chatter2 });
+    await this.chats.createOne({ chatter1, chatter2 });
     return { msg: "Chat started!" };
   }
 
