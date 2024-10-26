@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import { useUserStore } from "@/stores/user";
 import ChatView from "../views/ChatView.vue";
+import CommunityPageView from "../views/CommunityPageView.vue";
+import ExploreCommunitiesView from "../views/ExploreCommunitiesView.vue";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
@@ -39,6 +41,18 @@ const router = createRouter({
       path: "/chats",
       name: "Chats",
       component: ChatView,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: "/explore",
+      name: "Explore",
+      component: ExploreCommunitiesView,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: "/community/:communityName",
+      name: "CommunityPage",
+      component: CommunityPageView,
       meta: { requiresAuth: false },
     },
     {

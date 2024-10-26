@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import ChatComponent from "@/components/Chat/ChatComponent.vue";
-import { useUserStore } from "@/stores/user";
 import { fetchy } from "@/utils/fetchy";
-import { storeToRefs } from "pinia";
 import { onBeforeMount, ref } from "vue";
 import StartChatForm from "./StartChatForm.vue";
-
-const { isLoggedIn } = storeToRefs(useUserStore());
 
 const loaded = ref(false);
 let chats = ref<Array<Record<string, string>>>([]);

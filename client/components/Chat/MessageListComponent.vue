@@ -6,7 +6,6 @@ import { onBeforeMount, ref } from "vue";
 import ComposeMessageForm from "./ComposeMessageForm.vue";
 import MessageComponent from "./MessageComponent.vue";
 
-const { isLoggedIn } = storeToRefs(useUserStore());
 const { currentUsername } = storeToRefs(useUserStore());
 
 const loaded = ref(false);

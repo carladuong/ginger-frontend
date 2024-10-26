@@ -224,16 +224,22 @@ class Routes {
     return result;
   }
 
-  @Router.post("/communities/join")
+  @Router.post("/communities/join/:communityName")
   async joinCommunity(session: SessionDoc, communityName: string) {
     const user = Sessioning.getUser(session);
     return await LabelingUsers.affixLabel(user, communityName);
   }
 
-  @Router.delete("/communities/leave")
+  @Router.delete("/communities/leave/:communityName")
   async leaveCommunity(session: SessionDoc, communityName: string) {
     const user = Sessioning.getUser(session);
     return await LabelingUsers.removeLabel(user, communityName);
+  }
+
+  @Router.get("/communities/check/:communityName")
+  async isUserInCommunity(session: SessionDoc, communityName: string) {
+    const user = Sessioning.getUser(session);
+    return await LabelingUsers.checkIfItemLabeled(user, communityName);
   }
 
   @Router.get("/communities/members/:communityName")
@@ -255,6 +261,12 @@ class Routes {
   async getUserCommunities(session: SessionDoc) {
     const user = Sessioning.getUser(session);
     return await LabelingUsers.getItemLabels(user);
+  }
+
+  @Router.get("/allCommunities")
+  async getAllCommunities(session: SessionDoc) {
+    console.log("HERE");
+    return await LabelingUsers.getAllLabels();
   }
 
   @Router.get("/chats")

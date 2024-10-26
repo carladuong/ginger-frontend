@@ -100,4 +100,9 @@ export default class LabelingConcept {
     }
     return labels;
   }
+
+  async getAllLabels() {
+    const labels = await this.labels.readMany({});
+    return labels;
+  }
 }

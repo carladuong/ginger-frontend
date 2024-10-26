@@ -6,7 +6,6 @@ import { onBeforeMount, ref } from "vue";
 import { fetchy } from "../../utils/fetchy";
 
 const props = defineProps(["chat"]);
-const emit = defineEmits(["editPost", "refreshPosts"]);
 const { currentUsername } = storeToRefs(useUserStore());
 let chatter = ref("");
 let lastMessage = ref("");
