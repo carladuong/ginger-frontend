@@ -120,6 +120,12 @@ class Routes {
     return await Posting.update(oid, content, options);
   }
 
+  @Router.get("/posts/:id")
+  async getPost(session: SessionDoc, id: string) {
+    const oid = new ObjectId(id);
+    return await Posting.getById(oid);
+  }
+
   @Router.delete("/posts/:id")
   async deletePost(session: SessionDoc, id: string) {
     const user = Sessioning.getUser(session);
@@ -175,7 +181,7 @@ class Routes {
     return await Friending.rejectRequest(fromOid, user);
   }
 
-  @Router.post("/communities/create")
+  @Router.post("/communities/create/:communityName")
   async createCommunity(session: SessionDoc, communityName: string) {
     const user = Sessioning.getUser(session);
     await LabelingUsers.createLabel(communityName);
@@ -265,7 +271,6 @@ class Routes {
 
   @Router.get("/allCommunities")
   async getAllCommunities(session: SessionDoc) {
-    console.log("HERE");
     return await LabelingUsers.getAllLabels();
   }
 
@@ -277,13 +282,9 @@ class Routes {
 
   @Router.get("/chats/:chatter")
   async getChatMessages(session: SessionDoc, chatter: string) {
-    console.log("RUNNING GETCHATMESSAGES");
     const user = Sessioning.getUser(session);
-    console.log(`Getting this user in getChatMessages: ${chatter}`);
     const chatterId = (await Authing.getUserByUsername(chatter))._id;
     return await Messaging.getChatMessages(user, chatterId);
-    // const chatterId = new ObjectId(chatter);
-    // return await Messaging.getChatMessages(user, chatterId);
   }
 
   @Router.post("/chats/start")
@@ -328,7 +329,6 @@ class Routes {
         if ((await Matching.checkIfMatchable(member)) && !(await Matching.checkIfMatched(user, member))) {
           await Matching.createMatch(user, member);
           await Messaging.startChat(user, member);
-          console.log(member);
           return { msg: "Match created!", member };
         }
       }
@@ -336,14 +336,14 @@ class Routes {
     return { msg: "No matches found." };
   }
 
-  @Router.post("/post/comments/add")
+  @Router.post("/post/comments/add/:parentId")
   async addComment(session: SessionDoc, parentId: string, content: string) {
     const user = Sessioning.getUser(session);
     const parent = new ObjectId(parentId);
     return await Commenting.addComment(parent, user, content);
   }
 
-  @Router.post("/post/comments/reply")
+  @Router.post("/post/comments/reply/:parentId")
   async replyToComment(session: SessionDoc, parentId: string, content: string) {
     const user = Sessioning.getUser(session);
     const parent = new ObjectId(parentId);
@@ -356,13 +356,13 @@ class Routes {
     return await Commenting.deleteComment(comment);
   }
 
-  @Router.get("/post/comments")
+  @Router.get("/post/comments/:postId")
   async getComments(postId: string) {
     const id = new ObjectId(postId);
     return await Commenting.getItemComments(id);
   }
 
-  @Router.get("/post/comments/replies")
+  @Router.get("/post/comments/replies/:commentId")
   async getRepliesToComment(commentId: string) {
     const id = new ObjectId(commentId);
     return await Replying.getItemComments(id);

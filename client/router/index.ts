@@ -8,6 +8,7 @@ import ExploreCommunitiesView from "../views/ExploreCommunitiesView.vue";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
+import PostPageView from "../views/PostPageView.vue";
 import SettingView from "../views/SettingView.vue";
 import SingleChatView from "../views/SingleChatView.vue";
 
@@ -53,6 +54,12 @@ const router = createRouter({
       path: "/community/:communityName",
       name: "CommunityPage",
       component: CommunityPageView,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: "/post/:postId",
+      name: "PostPage",
+      component: PostPageView,
       meta: { requiresAuth: false },
     },
     {

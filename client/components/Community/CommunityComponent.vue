@@ -16,8 +16,7 @@ const getNumberOfMembers = async () => {
 };
 
 const goToCommunityPage = async () => {
-  console.log(props.community.labelName);
-  void router.push({ name: "Community", params: { communityName: props.community.labelName } });
+  void router.push({ name: "CommunityPage", params: { communityName: props.community.labelName } });
 };
 
 onBeforeMount(async () => {
