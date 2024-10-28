@@ -31,7 +31,7 @@ const getLastMessage = async () => {
 };
 
 const goToChat = async () => {
-  void router.push({ name: "Chat", params: { chatter: chatter.value } });
+  void router.push({ name: "Messages", params: { chatter: chatter.value } });
 };
 
 onBeforeMount(async () => {

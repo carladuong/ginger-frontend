@@ -1,5 +1,9 @@
 /* Add some global styles here! */
 
+body {
+  background-color: #fff4d7;
+}
+
 :root {
   --red: rgb(208, 67, 12);
   --base-bg: #f1f3f5;

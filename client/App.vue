@@ -4,6 +4,7 @@ import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
 import { computed, onBeforeMount } from "vue";
 import { RouterLink, RouterView, useRoute } from "vue-router";
+import SidebarComponent from "./components/Community/SidebarComponent.vue";
 
 const currentRoute = useRoute();
 const currentRouteName = computed(() => currentRoute.name);
@@ -25,34 +26,36 @@ onBeforeMount(async () => {
   <header>
     <nav>
       <div class="title">
-        <img src="@/assets/images/logo.svg" />
         <RouterLink :to="{ name: 'Home' }">
-          <h1>Social Media App</h1>
+          <h1>GINGER</h1>
         </RouterLink>
       </div>
       <ul>
         <li>
-          <RouterLink :to="{ name: 'Home' }" :class="{ underline: currentRouteName == 'Home' }"> Home </RouterLink>
+          <RouterLink :to="{ name: 'Home' }" :class="{ selected: currentRouteName == 'Home' }"> Home </RouterLink>
         </li>
         <li>
-          <RouterLink :to="{ name: 'Explore' }" :class="{ underline: currentRouteName == 'Explore' }"> Explore </RouterLink>
+          <RouterLink :to="{ name: 'Explore' }" :class="{ selected: currentRouteName == 'Explore' }"> Explore </RouterLink>
         </li>
         <li v-if="isLoggedIn">
-          <RouterLink :to="{ name: 'Settings' }" :class="{ underline: currentRouteName == 'Settings' }"> Settings </RouterLink>
+          <RouterLink :to="{ name: 'Chats' }" :class="{ selected: currentRouteName == 'Chats' }"> Chats </RouterLink>
+        </li>
+        <li v-if="isLoggedIn">
+          <RouterLink :to="{ name: 'Settings' }" :class="{ selected: currentRouteName == 'Settings' }"> Settings </RouterLink>
         </li>
         <li v-else>
-          <RouterLink :to="{ name: 'Login' }" :class="{ underline: currentRouteName == 'Login' }"> Login </RouterLink>
-        </li>
-        <li v-if="isLoggedIn">
-          <RouterLink :to="{ name: 'Chats' }" :class="{ underline: currentRouteName == 'Chats' }"> Chats </RouterLink>
+          <RouterLink :to="{ name: 'Login' }" :class="{ selected: currentRouteName == 'Login' }"> Login </RouterLink>
         </li>
       </ul>
     </nav>
+    <SidebarComponent />
     <article v-if="toast !== null" class="toast" :class="toast.style">
       <p>{{ toast.message }}</p>
     </article>
   </header>
-  <RouterView />
+  <div class="content">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
@@ -60,7 +63,13 @@ onBeforeMount(async () => {
 
 nav {
   padding: 1em 2em;
-  background-color: lightgray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #fdd991;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
 }
@@ -68,12 +77,19 @@ nav {
 h1 {
   font-size: 2em;
   margin: 0;
+  color: #e47a1d;
+  -webkit-text-stroke: 0.5px #aa5a13;
 }
 
 .title {
   display: flex;
   align-items: center;
   gap: 0.5em;
+  font-family: "Chewy", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #e98024;
+  letter-spacing: 3px;
 }
 
 img {
@@ -82,7 +98,7 @@ img {
 
 a {
   font-size: large;
-  color: black;
+  color: #e98024;
   text-decoration: none;
 }
 
@@ -93,9 +109,24 @@ ul {
   align-items: center;
   flex-direction: row;
   gap: 1em;
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  color: #e98024;
 }
 
 .underline {
   text-decoration: underline;
+}
+
+.selected {
+  color: #aa5a13;
+}
+
+.content {
+  margin-top: 100px; /* For top nav */
+  margin-left: 200px; /* For side nav */
 }
 </style>
