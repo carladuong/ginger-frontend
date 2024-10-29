@@ -270,7 +270,7 @@ class Routes {
   }
 
   @Router.get("/allCommunities")
-  async getAllCommunities(session: SessionDoc) {
+  async getAllCommunities() {
     return await LabelingUsers.getAllLabels();
   }
 

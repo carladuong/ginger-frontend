@@ -54,7 +54,7 @@ onBeforeMount(async () => {
     </article>
   </header>
   <div class="content">
-    <RouterView />
+    <RouterView :key="$route.params.communityName" />
   </div>
 </template>
 
@@ -68,16 +68,18 @@ nav {
   left: 0;
   right: 0;
   height: 50px;
-  background-color: #fdd991;
+  background-color: #fff4d7;
+  /* background-color: #ffe6b5; */
+  /* background-color: #ffe6b5; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
 }
 
-h1 {
-  font-size: 2em;
+.title h1 {
+  font-size: 2.5em;
   margin: 0;
-  color: #e47a1d;
+  color: #e98024;
   -webkit-text-stroke: 0.5px #aa5a13;
 }
 

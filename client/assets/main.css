@@ -19,9 +19,8 @@ button.button-error {
 }
 
 a.button {
-  color: #212529;
-  background-color: #f1f3f5;
-  border: 1px solid #dee2e6;
+  color: white;
+  background-color: #84a760;
   border-radius: 0.25em;
   padding: 0.375em 0.75em;
   text-decoration: none;
@@ -34,3 +33,12 @@ a.button {
   align-items: center;
   gap: 1em;
 }
+
+h2 {
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+

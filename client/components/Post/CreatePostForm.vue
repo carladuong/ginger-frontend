@@ -24,28 +24,39 @@ const emptyForm = () => {
 
 <template>
   <form @submit.prevent="createPost(content)">
-    <label for="content">Post Contents:</label>
-    <textarea id="content" v-model="content" placeholder="Create a post!" required> </textarea>
+    <label for="content">Have something to share?</label>
+    <textarea id="content" v-model="content" placeholder="Write your post here!" required> </textarea>
     <button type="submit" class="pure-button-primary pure-button">Create Post</button>
   </form>
 </template>
 
 <style scoped>
 form {
-  background-color: var(--base-bg);
+  background-color: #ffe6b5;
+  border: 2px solid #e98024;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   padding: 1em;
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  color: #e98024;
 }
 
 textarea {
-  font-family: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: inherit;
   height: 6em;
   padding: 0.5em;
   border-radius: 4px;
   resize: none;
+}
+
+button {
+  background-color: #84a760;
 }
 </style>

@@ -40,3 +40,23 @@ async function updatePassword() {
     </fieldset>
   </form>
 </template>
+
+<style scoped>
+legend {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #aa5a13;
+}
+
+h2 {
+  color: #aa5a13;
+}
+
+button {
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-style: normal;
+  text-align: center;
+  font-variation-settings: "wdth" 100;
+}
+</style>
