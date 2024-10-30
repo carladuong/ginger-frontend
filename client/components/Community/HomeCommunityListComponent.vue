@@ -12,19 +12,15 @@ let communities = ref([]);
 
 async function getUserCommunities() {
   let communityResults;
-  console.log("ABOUT TO GET COMMUNITIES");
   try {
     communityResults = await fetchy("/api/communities", "GET");
   } catch (_) {
     return;
   }
-  console.log("COMMUNITIES");
-  console.log(communityResults);
   communities.value = communityResults;
 }
 
 onBeforeMount(async () => {
-  console.log("on before mount");
   await getUserCommunities();
   loaded.value = true;
 });
@@ -43,8 +39,8 @@ onBeforeMount(async () => {
 <style scoped>
 .posts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
-  gap: 16px; /* Space between items */
-  justify-items: start; /* Aligns items to the left within their grid cells */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-items: start;
 }
 </style>

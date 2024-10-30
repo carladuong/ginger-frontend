@@ -24,24 +24,36 @@ const emptyForm = () => {
 </script>
 
 <template>
-  <form @submit.prevent="addComment(content)">
-    <textarea id="content" v-model="content" placeholder="Write a comment here..." required> </textarea>
-    <button type="submit" class="pure-button-primary pure-button">Post Comment</button>
-  </form>
+  <div>
+    <form @submit.prevent="addComment(content)">
+      <textarea id="content" v-model="content" placeholder="Write a comment here..." required> </textarea>
+      <button type="submit" class="pure-button-primary pure-button">Post Comment</button>
+    </form>
+  </div>
 </template>
 
 <style scoped>
+div {
+  padding-top: 20px;
+}
+
 form {
-  background-color: var(--base-bg);
+  background-color: #d1ebb6;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   padding: 1em;
+  max-width: 700px;
+}
+
+button {
+  background-color: #84a760;
+  border-radius: 2em;
 }
 
 textarea {
-  font-family: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: inherit;
   height: 6em;
   padding: 0.5em;

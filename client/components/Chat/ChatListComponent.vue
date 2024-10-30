@@ -24,7 +24,9 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <StartChatForm @refresh-chats="getChats" />
+  <section>
+    <StartChatForm @refresh-chats="getChats" />
+  </section>
   <section class="chats" v-if="loaded && chats.length !== 0">
     <article v-for="chat in chats" :key="chat._id">
       <ChatComponent :chat="chat" />
@@ -39,33 +41,40 @@ section {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  padding-bottom: 1em;
 }
 
 section,
 p,
 .row {
-  margin: 0 auto;
   max-width: 60em;
 }
 
 article {
-  background-color: var(--base-bg);
-  border: solid;
   border-radius: 1em;
+  background-color: #ffe6b5;
+  border: solid 2px #e98024;
+  color: #e98024;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   padding: 1em;
+  max-width: 500px;
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 .posts {
   padding: 1em;
 }
 
-.row {
+/* .row {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 60em;
-}
+} */
 </style>

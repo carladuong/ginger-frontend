@@ -59,6 +59,7 @@ export default class LabelingConcept {
 
   async checkIfItemLabeled(itemId: ObjectId, labelName: string) {
     const labels = await this.getItemLabels(itemId);
+    console.log(labels);
     if (labels.includes(labelName)) {
       return true;
     }
@@ -94,11 +95,21 @@ export default class LabelingConcept {
     const labels = [];
     const labelObjects = await this.labels.readMany({});
     for (const labelDoc of labelObjects) {
+      console.log(labelDoc.itemIds);
       if (labelDoc.itemIds.some((id) => id.equals(itemId))) {
         labels.push(labelDoc.labelName);
       }
     }
     return labels;
+  }
+
+  async getLabelObjectByName(labelName: string) {
+    const labelObject = await this.labels.readOne({ labelName });
+    if (!labelObject) {
+      throw new NotFoundError("Label does not exist!");
+    } else {
+      return labelObject;
+    }
   }
 
   async getAllLabels() {

@@ -41,17 +41,13 @@ section {
   display: flex;
   flex-direction: column;
   gap: 1em;
-}
-
-section,
-p,
-.row {
-  margin: 0 auto;
-  max-width: 60em;
+  padding-left: 0px !important;
+  margin: 0;
+  max-width: 700px;
 }
 
 article {
-  background-color: var(--base-bg);
+  background-color: #ffe6b5;
   border-radius: 1em;
   display: flex;
   flex-direction: column;

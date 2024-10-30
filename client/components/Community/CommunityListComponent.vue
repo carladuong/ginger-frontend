@@ -42,36 +42,26 @@ onBeforeMount(async () => {
 </template>
 
 <style scoped>
-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-section,
-p,
-.row {
-  margin: 0 auto;
-  max-width: 60em;
-}
-
 article {
-  background-color: var(--base-bg);
-  border-radius: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  padding: 1em;
+  background-color: #a7cc82;
+  padding: 20px;
+  text-align: left;
+  border: 2px solid #ccc;
+  border-color: #84a760;
+  border-radius: 8px;
+  width: 360px;
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: #445434;
+  font-variation-settings: "width" 100;
 }
 
 .posts {
-  padding: 1em;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 60em;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 420px);
+  gap: 10px 5px;
 }
 </style>

@@ -48,16 +48,25 @@ const emptyForm = () => {
 
 <style scoped>
 form {
-  background-color: var(--base-bg);
+  background-color: #d1ebb6;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   padding: 1em;
+  max-width: 700px;
+}
+
+button {
+  background-color: #84a760;
+  border-radius: 2em;
+  border: solid transparent;
+  padding: 5px;
+  color: white;
 }
 
 textarea {
-  font-family: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: inherit;
   height: 6em;
   padding: 0.5em;

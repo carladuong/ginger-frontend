@@ -18,7 +18,6 @@ let searchAuthor = ref("");
 async function getPosts() {
   let postResults;
   try {
-    console.log(props.community);
     postResults = await fetchy(`/api/communities/${props.community}`, "GET");
   } catch (_) {
     return;
@@ -43,15 +42,30 @@ onBeforeMount(async () => {
       <EditPostForm v-else :post="post" @refreshPosts="getPosts" />
     </article>
   </section>
-  <p v-else-if="loaded">No posts found</p>
-  <p v-else>Loading...</p>
+  <h3 v-else-if="loaded">No posts yet.</h3>
+  <h3 v-else>Loading...</h3>
 </template>
 
 <style scoped>
 section {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+}
+
+h2 {
+  color: #e98024;
+}
+
+h3 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  color: #e98024;
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 section,
@@ -62,7 +76,7 @@ p,
 }
 
 article {
-  background-color: var(--base-bg);
+  background-color: #a7cc82;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
@@ -72,6 +86,9 @@ article {
 
 .posts {
   padding: 1em;
+  display: flex;
+  gap: 1em;
+  color: #596e42;
 }
 
 .row {

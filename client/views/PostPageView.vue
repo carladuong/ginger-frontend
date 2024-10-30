@@ -13,3 +13,9 @@ const postId = route.params.postId;
     <CommentListComponent :post="postId" />
   </main>
 </template>
+
+<style scoped>
+main {
+  padding-left: 50px;
+}
+</style>

@@ -11,7 +11,6 @@ let numMembers = ref(0);
 
 const getNumberOfMembers = async () => {
   let members = await fetchy(`/api/communities/members/${props.community.labelName}`, "GET");
-  console.log(members);
   numMembers.value = members.length;
 };
 

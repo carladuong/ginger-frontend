@@ -11,6 +11,10 @@ const currentRouteName = computed(() => currentRoute.name);
 const userStore = useUserStore();
 const { isLoggedIn } = storeToRefs(userStore);
 const { toast } = storeToRefs(useToastStore());
+const computedKey = computed(() => {
+  const communityName = currentRoute.params.communityName;
+  return Array.isArray(communityName) ? communityName[0] : communityName || "";
+});
 
 // Make sure to update the session before mounting the app in case the user is already logged in
 onBeforeMount(async () => {
@@ -54,7 +58,7 @@ onBeforeMount(async () => {
     </article>
   </header>
   <div class="content">
-    <RouterView :key="$route.params.communityName" />
+    <RouterView :key="computedKey" />
   </div>
 </template>
 
@@ -69,8 +73,6 @@ nav {
   right: 0;
   height: 50px;
   background-color: #fff4d7;
-  /* background-color: #ffe6b5; */
-  /* background-color: #ffe6b5; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;

@@ -25,7 +25,6 @@ async function getCommunities() {
 
 onBeforeMount(async () => {
   await getCommunities();
-  console.log(communities.value);
   loaded.value = true;
 });
 </script>
@@ -75,7 +74,7 @@ h2 {
   width: 200px;
   height: 100vh;
   position: fixed;
-  top: 82px; /* Below the top nav */
+  top: 82px;
   left: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

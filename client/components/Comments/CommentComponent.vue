@@ -43,42 +43,51 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <p>{{ author }}</p>
-  <p>{{ props.comment.content }}</p>
-  <article class="timestamp">
-    <p v-if="props.comment.dateCreated !== props.comment.dateUpdated">Edited on: {{ formatDate(props.comment.dateUpdated) }}</p>
-    <p v-else>Created on: {{ formatDate(props.comment.dateCreated) }}</p>
-    <AddReplyToCommentForm :comment="props.comment._id" v-on:refresh-replies="getReplies" />
-  </article>
-  <div v-if="replies.length !== 0 && !showReplies">
-    <button v-on:click="toggleReplies">Show {{ replies.length }} replies</button>
-  </div>
-  <div v-else-if="replies.length !== 0">
-    <button v-on:click="toggleReplies">Hide replies</button>
-    <article v-for="reply in replies" :key="reply._id">
-      <p>Replying to {{ author }}</p>
-      <CommentComponent :comment="reply" />
+  <div class="comment">
+    <p class="author">{{ author }}</p>
+    <p>{{ props.comment.content }}</p>
+    <article class="timestamp">
+      <p v-if="props.comment.dateCreated !== props.comment.dateUpdated">Edited on: {{ formatDate(props.comment.dateUpdated) }}</p>
+      <p v-else>Created on: {{ formatDate(props.comment.dateCreated) }}</p>
     </article>
+    <AddReplyToCommentForm :comment="props.comment._id" v-on:refresh-replies="getReplies" />
+    <div v-if="replies.length !== 0 && !showReplies">
+      <button v-on:click="toggleReplies">Show {{ replies.length }} replies</button>
+    </div>
+    <div v-else-if="replies.length !== 0">
+      <button v-on:click="toggleReplies">Hide replies</button>
+      <article class="replies" v-for="reply in replies" :key="reply._id">
+        <p>Replying to {{ author }}</p>
+        <CommentComponent :comment="reply" />
+      </article>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.comment {
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.replies {
+  padding-top: 10px;
+}
+
 p {
   margin: 0em;
+  color: #c76916;
 }
 
 .author {
   font-weight: bold;
   font-size: 1.2em;
-}
-
-menu {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  gap: 1em;
-  padding: 0;
-  margin: 0;
 }
 
 .timestamp {
@@ -88,13 +97,11 @@ menu {
   font-style: italic;
 }
 
-.base {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.base article:only-child {
-  margin-left: auto;
+button {
+  background-color: #e98024;
+  color: white;
+  border: transparent;
+  padding: 10px;
+  border-radius: 20px;
 }
 </style>

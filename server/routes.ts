@@ -181,7 +181,7 @@ class Routes {
     return await Friending.rejectRequest(fromOid, user);
   }
 
-  @Router.post("/communities/create/:communityName")
+  @Router.post("/community/:communityName")
   async createCommunity(session: SessionDoc, communityName: string) {
     const user = Sessioning.getUser(session);
     await LabelingUsers.createLabel(communityName);
@@ -189,7 +189,13 @@ class Routes {
     return LabelingUsers.affixLabel(user, communityName);
   }
 
-  @Router.post("/communities/symptoms/add")
+  @Router.get("/symptoms/:communityName")
+  async getCommonSymptoms(communityName: string) {
+    const labelObject = await LabelingPosts.getLabelObjectByName(communityName);
+    return await LabelingLabels.getItemLabels(labelObject._id);
+  }
+
+  @Router.post("/communities/symptoms/:communityName")
   async addCommonSymptom(session: SessionDoc, communityName: string, symptom: string) {
     const user = Sessioning.getUser(session);
     if (!(await LabelingUsers.checkIfItemLabeled(user, communityName))) {
@@ -206,7 +212,7 @@ class Routes {
     return await LabelingLabels.affixLabel(communityLabel._id, symptom);
   }
 
-  @Router.delete("/communities/symptoms/delete")
+  @Router.delete("/communities/symptoms/:communityName/:symptom")
   async deleteCommonSymptom(session: SessionDoc, communityName: string, symptom: string) {
     const user = Sessioning.getUser(session);
     if (!(await LabelingUsers.checkIfItemLabeled(user, communityName))) {
@@ -329,7 +335,7 @@ class Routes {
         if ((await Matching.checkIfMatchable(member)) && !(await Matching.checkIfMatched(user, member))) {
           await Matching.createMatch(user, member);
           await Messaging.startChat(user, member);
-          return { msg: "Match created!", member };
+          return (await Authing.getUserById(member)).username;
         }
       }
     }

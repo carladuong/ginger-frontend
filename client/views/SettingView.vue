@@ -69,9 +69,9 @@ button {
 }
 
 .line-separator {
-  border: none; /* Remove default border */
-  height: 2px; /* Line height */
-  background-color: #ffcb9d; /* Line color */
-  margin: 20px 0; /* Space above and below the line */
+  border: none;
+  height: 2px;
+  background-color: #ffcb9d;
+  margin: 20px 0;
 }
 </style>

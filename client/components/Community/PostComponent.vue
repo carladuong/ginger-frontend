@@ -55,8 +55,16 @@ p {
   margin: 0em;
 }
 
+div {
+  font-family: "Fredoka", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
 .author {
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.2em;
 }
 
