@@ -10,6 +10,7 @@ const props = defineProps(["post"]);
 const emit = defineEmits(["editPost", "refreshPosts"]);
 const { currentUsername } = storeToRefs(useUserStore());
 let author = ref("");
+let communities = ref("");
 
 const deletePost = async () => {
   try {
@@ -20,6 +21,17 @@ const deletePost = async () => {
   emit("refreshPosts");
 };
 
+const getPostCommunities = async () => {
+  let communitiesResults;
+  try {
+    communitiesResults = await fetchy(`/api/post/communities/${props.post._id}`, "GET");
+  } catch {
+    return;
+  }
+  console.log(communitiesResults);
+  communities.value = communitiesResults.join(", ");
+};
+
 async function getAuthor() {
   author.value = (await fetchy(`/api/users/id/${props.post.author}`, "GET")).username;
 }
@@ -28,20 +40,23 @@ const goToPostPage = async () => {
   void router.push({ name: "PostPage", params: { postId: props.post._id } });
 };
 
+const goToUserPage = async () => {
+  void router.push({ name: "UserProfile", params: { username: author.value } });
+};
+
 onBeforeMount(async () => {
   await getAuthor();
+  await getPostCommunities();
 });
 </script>
 
 <template>
   <div v-on:click="goToPostPage">
-    <p class="author">{{ author }}</p>
+    <p class="author">
+      <b>{{ author }}</b> posted in <b>{{ communities }}</b>
+    </p>
     <p>{{ props.post.content }}</p>
     <div class="base">
-      <menu v-if="props.post.author == currentUsername">
-        <li><button class="btn-small pure-button" @click="emit('editPost', props.post._id)">Edit</button></li>
-        <li><button class="button-error btn-small pure-button" @click="deletePost">Delete</button></li>
-      </menu>
       <article class="timestamp">
         <p v-if="props.post.dateCreated !== props.post.dateUpdated">Edited on: {{ formatDate(props.post.dateUpdated) }}</p>
         <p v-else>Created on: {{ formatDate(props.post.dateCreated) }}</p>

@@ -16,7 +16,7 @@ const { currentUsername, isLoggedIn } = storeToRefs(useUserStore());
     <section class="post-form" v-if="isLoggedIn">
       <CreatePostForm />
     </section>
-    <section>
+    <section v-if="isLoggedIn">
       <h1>See what's happening in your communities.</h1>
     </section>
     <section class="community-grid" v-if="isLoggedIn">

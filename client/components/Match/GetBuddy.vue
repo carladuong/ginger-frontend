@@ -5,6 +5,10 @@ import { fetchy } from "../../utils/fetchy";
 const getMatch = async () => {
   let match;
   try {
+    let canMatch = await fetchy("/api/matches", "GET");
+    if (!canMatch) {
+      await fetchy("/api/matches/optin", "POST");
+    }
     match = await fetchy("/api/match", "POST");
   } catch (_) {
     throw new Error("Must be opted in to matching! Head to settings to opt in.");
@@ -22,7 +26,7 @@ const getMatch = async () => {
 <template>
   <container>
     <h3>Buddy Match</h3>
-    <p>Want to meet people in your communities? Click here to be matched with one!</p>
+    <p>Want to meet people in your communities? Click here to start a chat with one!</p>
     <button v-on:click="getMatch">Get Matched</button>
   </container>
 </template>

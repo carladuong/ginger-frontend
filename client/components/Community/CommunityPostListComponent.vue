@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import CreatePostForm from "@/components/Post/CreatePostForm.vue";
 import EditPostForm from "@/components/Post/EditPostForm.vue";
 import { useUserStore } from "@/stores/user";
 import { fetchy } from "@/utils/fetchy";
 import { storeToRefs } from "pinia";
 import { onBeforeMount, ref } from "vue";
+import CommunityCreatePostForm from "../Post/CommunityCreatePostForm.vue";
 import PostComponent from "./PostComponent.vue";
 
 const { isLoggedIn } = storeToRefs(useUserStore());
@@ -34,7 +34,7 @@ onBeforeMount(async () => {
 <template>
   <section v-if="isLoggedIn">
     <h2>Create a post:</h2>
-    <CreatePostForm @refreshPosts="getPosts" />
+    <CommunityCreatePostForm @refreshPosts="getPosts" :community="community" />
   </section>
   <section class="posts" v-if="loaded && posts.length !== 0">
     <article v-for="post in posts" :key="post._id">

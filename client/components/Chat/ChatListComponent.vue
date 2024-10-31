@@ -71,10 +71,7 @@ article {
   padding: 1em;
 }
 
-/* .row {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 60em;
-} */
+p {
+  color: #e98024;
+}
 </style>

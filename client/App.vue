@@ -45,6 +45,9 @@ onBeforeMount(async () => {
           <RouterLink :to="{ name: 'Chats' }" :class="{ selected: currentRouteName == 'Chats' }"> Chats </RouterLink>
         </li>
         <li v-if="isLoggedIn">
+          <RouterLink :to="{ name: 'UserProfile', params: { username: userStore.currentUsername } }" :class="{ selected: currentRouteName == 'UserProfile' }"> Profile </RouterLink>
+        </li>
+        <li v-if="isLoggedIn">
           <RouterLink :to="{ name: 'Settings' }" :class="{ selected: currentRouteName == 'Settings' }"> Settings </RouterLink>
         </li>
         <li v-else>

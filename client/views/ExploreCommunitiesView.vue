@@ -4,6 +4,7 @@ import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 
 import CommunityListComponent from "@/components/Community/CommunityListComponent.vue";
+import SymptomSearchComponent from "@/components/Community/SymptomSearchComponent.vue";
 
 const { currentUsername, isLoggedIn } = storeToRefs(useUserStore());
 const route = useRoute();
@@ -13,6 +14,7 @@ const chatter = route.params.chatter;
 <template>
   <main>
     <h1>Find people who get it.</h1>
+    <SymptomSearchComponent />
     <CommunityListComponent />
   </main>
 </template>
@@ -25,6 +27,9 @@ main {
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "wdth" 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 h1 {

@@ -43,4 +43,9 @@ onBeforeMount(async () => {
   gap: 16px;
   justify-items: start;
 }
+
+p {
+  color: #e98024;
+  padding-left: 50px;
+}
 </style>

@@ -225,15 +225,22 @@ class Routes {
     return await LabelingLabels.removeLabel(communityLabel._id, symptom);
   }
 
-  @Router.get("/communities/search")
+  @Router.get("/communities/search/:symptoms")
   async searchBySymptoms(symptoms: string) {
-    const symptomList = symptoms.split(",");
+    console.log("IN ROUTES");
+    const symptomList = symptoms.split("P");
+    console.log(symptomList);
     const itemIds = await LabelingLabels.findItemsByLabels(symptomList);
     const result = [];
     for (const itemId of itemIds) {
       result.push(await LabelingPosts.labels.readOne({ _id: itemId }));
     }
     return result;
+  }
+
+  @Router.get("/allSymptoms")
+  async getAllSymptoms() {
+    return await LabelingLabels.getAllLabels();
   }
 
   @Router.post("/communities/join/:communityName")
@@ -273,6 +280,18 @@ class Routes {
   async getUserCommunities(session: SessionDoc) {
     const user = Sessioning.getUser(session);
     return await LabelingUsers.getItemLabels(user);
+  }
+
+  @Router.get("/communities/user/:id")
+  async getAnyUserCommunities(id: string) {
+    const idObj = new ObjectId(id);
+    return await LabelingUsers.getItemLabels(idObj);
+  }
+
+  @Router.get("/post/communities/:postId")
+  async getPostCommunities(postId: string) {
+    const post = new ObjectId(postId);
+    return await LabelingPosts.getItemLabels(post);
   }
 
   @Router.get("/allCommunities")

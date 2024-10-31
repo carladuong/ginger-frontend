@@ -37,6 +37,10 @@ onBeforeMount(async () => {
 </template>
 
 <style scoped>
+p {
+  color: #e98024;
+}
+
 section {
   display: flex;
   flex-direction: column;

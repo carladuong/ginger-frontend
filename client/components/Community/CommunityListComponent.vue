@@ -10,8 +10,6 @@ const { isLoggedIn } = storeToRefs(useUserStore());
 
 const loaded = ref(false);
 let communities = ref<Array<Record<string, string>>>([]);
-let editing = ref("");
-let searchAuthor = ref("");
 
 async function getCommunities() {
   let communityResults;
@@ -20,7 +18,6 @@ async function getCommunities() {
   } catch (_) {
     return;
   }
-  console.log(communityResults);
   communities.value = communityResults;
 }
 

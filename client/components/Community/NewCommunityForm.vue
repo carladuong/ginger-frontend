@@ -25,7 +25,8 @@ const emptyForm = () => {
 
 <template>
   <form @submit.prevent="createCommunity(content)">
-    <label for="content">Don't see a community that represents you? Start a new one here!</label>
+    <h3>Don't see a community that represents you? Start a new one here!</h3>
+    <!-- <label for="content">Don't see a community that represents you? Start a new one here!</label> -->
     <input type="text" id="content" v-model="content" placeholder="Community name" required />
     <button type="submit" class="pure-button-primary pure-button">Create Community</button>
   </form>
@@ -54,5 +55,12 @@ input {
 
 button {
   background-color: #84a760;
+  border-radius: 8px;
+}
+
+h3 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-weight: normal;
 }
 </style>

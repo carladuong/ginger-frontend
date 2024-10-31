@@ -9,8 +9,10 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
 import PostPageView from "../views/PostPageView.vue";
+import SearchResultsView from "../views/SearchResultsView.vue";
 import SettingView from "../views/SettingView.vue";
 import SingleChatView from "../views/SingleChatView.vue";
+import UserProfileView from "../views/UserProfileView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -66,6 +68,18 @@ const router = createRouter({
       path: "/messages/:chatter",
       name: "Messages",
       component: SingleChatView,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: "/user/:username",
+      name: "UserProfile",
+      component: UserProfileView,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: "/searchResults",
+      name: "SearchResultsPage",
+      component: SearchResultsView,
       meta: { requiresAuth: false },
     },
     {

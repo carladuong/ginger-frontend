@@ -7,6 +7,7 @@ const dropdown1 = ref("");
 const dropdown2 = ref("");
 const dropdown3 = ref("");
 const emit = defineEmits(["refreshPosts"]);
+const props = defineProps(["community"]);
 let communities = ref<Array<Record<string, string>>>([]);
 
 async function getCommunities() {
@@ -23,8 +24,8 @@ onBeforeMount(async () => {
   await getCommunities();
 });
 
-const createPost = async (content: string, community1: string, community2: string, community3: string) => {
-  const selectedCommunities = [community1, community2, community3];
+const createPost = async (content: string, community2: string, community3: string) => {
+  const selectedCommunities = [props.community, community2, community3];
   const distinct = Array.from(new Set(selectedCommunities.filter((item) => item !== "")));
   console.log(selectedCommunities);
   console.log(distinct);
@@ -67,17 +68,9 @@ const emptyForm = () => {
 </script>
 
 <template>
-  <form @submit.prevent="createPost(content, dropdown1, dropdown2, dropdown3)">
-    <label for="content">Have something to share? Write your thoughts and select at least one community to post to.</label>
+  <form @submit.prevent="createPost(content, dropdown2, dropdown3)">
+    <label for="content">Have something to share? Write your thoughts to post to this community! If you wish, select up to two additional communities to cross-post on.</label>
     <textarea id="content" v-model="content" placeholder="Write your post here!" required> </textarea>
-
-    <label for="dropdown1">Community 1 (required):</label>
-    <select id="dropdown1" v-model="dropdown1" required>
-      <option disabled value="">Please select a community</option>
-      <option v-for="community in communities" :key="community.labelName" :value="community.labelName">
-        {{ community.labelName }}
-      </option>
-    </select>
 
     <label for="dropdown2">Community 2:</label>
     <select id="dropdown2" v-model="dropdown2">

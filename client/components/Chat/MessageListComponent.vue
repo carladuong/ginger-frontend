@@ -66,6 +66,7 @@ p {
   font-style: normal;
   font-variation-settings: "wdth" 100;
   text-align: center;
+  color: #e98024;
 }
 
 .compose {
